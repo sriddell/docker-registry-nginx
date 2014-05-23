@@ -9,8 +9,11 @@ RUN chown -R www-data:www-data /var/lib/nginx
 
 ADD nginx.conf /etc/nginx/
 ADD htpasswd /etc/nginx/
-ADD ssl/server.crt /etc/nginx/ssl/
-ADD ssl/server.key /etc/nginx/ssl/
+#ADD ssl/server.crt /etc/nginx/ssl/
+#ADD ssl/server.key /etc/nginx/ssl/
+
+VOLUME ["/ssl"]
+VOLUME ["/registry"]
 
 ADD config.yml /docker-registry/config/
 
