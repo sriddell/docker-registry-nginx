@@ -2,14 +2,14 @@
 # other flavors)
 common:
     # Bucket for storage
-    boto_bucket: REPLACEME
+    boto_bucket: _env:AWS_BUCKET
 
     # Amazon S3 Storage Configuration
-    s3_access_key: REPLACEME
-    s3_secret_key: REPLACEME
-    s3_bucket: REPLACEME
-    s3_encrypt: REPLACEME
-    s3_secure: REPLACEME
+    s3_access_key: _env:AWS_KEY
+    s3_secret_key: _env:AWS_SECRET
+    s3_bucket: _env:AWS_BUCKET
+    s3_encrypt: _env:AWS_ENCRYPT:true 
+    s3_secure: _env:AWS_SECURE:true
 
     # Google Cloud Storage Configuration
     # See:
@@ -48,27 +48,6 @@ dev:
 prod:
     storage: s3
     storage_path: "_env:STORAGE_PATH:/prod"
-    # Enabling LRU cache for small files. This speeds up read/write on small files
-    # when using a remote storage backend (like S3).
-    cache:
-        host: _env:CACHE_REDIS_HOST
-        port: _env:CACHE_REDIS_PORT
-        password: _env:CACHE_REDIS_PASSWORD
-    cache_lru:
-        host: _env:CACHE_LRU_REDIS_HOST
-        port: _env:CACHE_LRU_REDIS_PORT
-        password: _env:CACHE_LRU_REDIS_PASSWORD
-    # Enabling these options makes the Registry send an email on each code Exception
-    email_exceptions:
-        smtp_host: REPLACEME
-        smtp_port: 25
-        smtp_login: REPLACEME
-        smtp_password: REPLACEME
-        smtp_secure: false
-        from_addr: docker-registry@localdomain.local
-        to_addr: noise+dockerregistry@localdomain.local
-    # Enable bugsnag (set the API key)
-    bugsnag: REPLACEME
 
 # This flavor is automatically used by unit tests
 test:
