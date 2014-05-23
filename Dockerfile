@@ -18,8 +18,6 @@ env DOCKER_REGISTRY_CONFIG /docker-registry/config/config.yml
 env SETTINGS_FLAVOR dev
 
 expose 443
-expose 8000
-expose 5000
 
 #cmd exec docker-registry && nginx
 cmd nginx && exec docker-registry
