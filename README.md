@@ -5,10 +5,18 @@ The Dockerfile is based on the registry dockerfile in the public repo.
 It adds nginx to protect the registry with ssl+basic auth.
 
 #Running
-The container exposes volumes /ssl and /registry to hold the ssl key/cert and the registry data.  Map host directories to these volumes, and map a port to the exposed port of 443.  For example
+The container exposes volumes /ssl /htpasswd, and /registry to hold the ssl key/cert htpasswd file and the registry data.  Then nginx config expects to find the following files:
 
 ```
-docker run -v /home/sriddell/docker-registry-data/ssl:/ssl -v /home/sriddell/docker-registry-data/registry:/registry -p 443:443
+/ssl/server.crt
+/ssl/server.key
+/htpassd/htpasswd
+```
+
+Map host directories to these volumes, and map a port to the exposed port of 443.  For example
+
+```
+docker run -v /home/sriddell/docker-registry-data/ssl:/ssl -v /home/sriddell/docker-registry-data/registry:/registry -v /home/sriddell/docker-registry-data/htpwasswd:/htpasswd -p 443:443
 ```
 
 #Caveats
