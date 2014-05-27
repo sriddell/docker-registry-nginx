@@ -19,7 +19,7 @@ Map host directories to these volumes, and map a port to the exposed port of 443
 docker.io run -v /home/sriddell/docker-registry-data/ssl:/ssl -v /home/sriddell/docker-registry-data/registry:/registry -v /home/sriddell/docker-registry-data/htpwasswd:/htpasswd -p 443:443
 ```
 
-To run on aws using S3 for storage, yous something like
+To run on aws using S3 for storage, use something like
 
 ```
 sudo docker.io run -e SETTINGS_FLAVOR=prod -e AWS_BUCKET=my_bucket -e STORAGE_PATH=/registry -e AWS_KEY=key -e AWS_SECRET=secret_key -p 443:443 -v /home/ubuntu/docker-registry-data/ssl:/ssl -v /home/ubuntu/docker-registry-data/htpasswd:/htpasswd [image_name]
