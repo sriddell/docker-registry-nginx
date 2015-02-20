@@ -39,6 +39,23 @@ Then create/update the htpasswd file wherever you mount the container's /htpassw
 sudo htpasswd -c /home/ubuntu/docker-registry-data/htpasswd exampleuser
 ```
 
+#Using
+Put the auth string for the server in .dockercfg.  Note that if you use the port, you will need to put it in twice.
+
+For example, if a Dockerfile with a FROM line of
+
+```
+FROM myserver.domain.com/image:0.1.0
+```
+
+Requires myserser.domain.com to have an entry in the .dockercfg for authentication.
+
+```
+FROM myserver.domain.com:443/image:0.1.0
+```
+
+Requires .dockercfg to define an authentication string for myserver.domain.com:443.
+
 #Caveats
 If you get a message about a missing version header when trying to push an image, it likely means that your local docker client does not trust the cert chain.  The client just talks to the local daemon, and the daemon appears to cache the CA bundle on startup.  So if you add a new trusted CA, you need to bounce the daemon for pushes to work.
 
